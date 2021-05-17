@@ -1,37 +1,19 @@
-import requests 
-import threading
 
-url = "http://omenarea.com/auth.php"
+import requests
+
+url = "http://omenarea.com/auth.php" 
+#the phishing url that posts the requests
+
 
 data = {
   "doAuth" : "1",
-  "login" : "sdsd",
-  "password" : "sdsds",
+  "login" : "sdsdasdasdasdasdasd",
+  "password" : "sdsdsasdasdasdasd",
 }
+#data that will be passed as login info 
 
-# response = requests.post(url , data = data).text
-# if response.ok:
-#   print("ok")
-
-# try:
-    
-#     resp.raise_for_status()
-# except requests.exceptions.HTTPError as err:
-#     print(err)
-def spam (url , data):
-  while True:
-    resp = requests.post(url ,data)
-    print(resp.raise_for_status())
-
-threads = []
-
-for i in range(50):
-  x = threading.Thread(target=spam(url , data))
-  x.daemon = True
-  threads.append(x)
-
-for i in range(50):
-  threads[i].start()
-
-for i in range(50):
-  threads[i].join()
+i=0
+while(True):
+  response1 = requests.post(url , data = data) #post method to spam data on thier database
+  i+=1
+  print(response1.status_code, i) #just print how many times the code ran (200 means success and then the number means no of iteration)
